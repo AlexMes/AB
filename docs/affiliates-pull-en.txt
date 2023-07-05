@@ -1,0 +1,74 @@
+# Pulling statuses & FTD
+
+**URL** https://uleads.app/external/leads
+
+**Method** GET
+
+### Query params:
+
+-   `api_key` - required, your affiliate key
+-   `since` - start of period, format (YYYY-MM-DD, i.e. 2020-01-01)
+-   `until` - end of period, format (YYYY-MM-DD, i.e. 2020-01-01)
+-   `search` - search by lead id, phone number, email address.
+-   `perPage` - amount of items on page in response, 100 by default.
+
+## Example
+
+### Request
+
+`GET https://uleads.app/external/leads?api_key=token-here`
+
+### Response
+
+Please, note, second lead is marked as FTD, therefore contains `ftdDate` param, with date of deposit.
+
+```json
+{
+    "data": [
+        {
+            "id": "5c5195e4-baf4-4a9b-994c-94d94cd4fcb2",
+            "name": "test",
+            "phone": "23423424",
+            "ip": null,
+            "domain": null,
+            "clickid": null,
+            "utm_source": null,
+            "utm_campaign": null,
+            "utm_term": null,
+            "utm_content": null,
+            "status": "Новый",
+            "created_at": "2020-12-23 08:38:34"
+        },
+        {
+            "id": "5c5195e4-baf4-4a9b-994c-94d94cd4f123",
+            "name": "test",
+            "phone": "00000000000",
+            "ip": null,
+            "ftdDate": "2020-12-23",
+            "domain": null,
+            "clickid": null,
+            "utm_source": null,
+            "utm_campaign": null,
+            "utm_term": null,
+            "utm_content": null,
+            "status": "Депозит",
+            "created_at": "2020-12-23 08:38:34"
+        }
+    ],
+    "links": {
+        "first": "https://uleads.app/external/leads?page=1",
+        "last": "https:///uleads.app/external/leads?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "https://uleads.app/external/leads",
+        "per_page": "1000",
+        "to": 1,
+        "total": 1
+    }
+}
+```

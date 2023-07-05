@@ -1,0 +1,10 @@
+/node_modules
+/.circleci
+/.idea
+/.vscode
+.editorconfig
+ide.sh
+.phpstorm.meta.php
+server.php
+.php_cs
+.php_cs.cache

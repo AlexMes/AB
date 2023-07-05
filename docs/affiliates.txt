@@ -1,0 +1,59 @@
+# Отправка лидов
+
+-   URL: `https://uleads.app/leads/register`
+-   Метод: POST
+-   Заголовки: `Content-Type` & `Accept` = `application/json`
+
+## Поля
+
+**Внимание** лиды без поля `api_key`, расцениваются системой как ничейные, проверяйте наличие и корректность этого параметра в ваших запросах.
+
+-   `api_key` - Токен кампании
+-   `firstname` - обязательное
+-   `lastname` - обязательное
+-   `middlename`
+-   `domain`
+-   `phone` - обязательное
+-   `ip` - обязательное
+-   `email` - обязательное
+-   `form_type`
+-   `utm_source`
+-   `utm_content`
+-   `utm_campaign`
+-   `utm_term`
+-   `utm_medium`
+-   `clickid` - Не обязательно, в случае отправки - должно быть уникальным для каждого лида, повторение значений в этом поле расценивается как дубль, и игнорирутеся системой.
+
+### Успешный ответ
+
+-   HTTP код 201
+
+Пример:
+
+```json
+{
+    "message": "Stored",
+    "redirect": "https://some.url?token=12345",
+    "lead": {
+        "id": "09ac276c-4f0b-436c-9f0e-1d17f4e7c9d5",
+        "name": "Tommy Lee",
+        "phone": "796487799226",
+        "valid": true
+    }
+}
+```
+
+### Ошибки валидации
+
+HTTP код 422, подробное описание ошибок в теле запроса.
+
+Пример:
+
+```json
+{
+    "message": "The given data was invalid.",
+    "errors": {
+        "phone": ["The phone field is required."]
+    }
+}
+```
